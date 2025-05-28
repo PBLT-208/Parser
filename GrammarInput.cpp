@@ -39,15 +39,14 @@ void GrammarInput::readGrammar() {
 
         string productionPart;
         getline(iss, productionPart); // read everythin on RHS of ->
-        // remove trailing spaces
-        productionPart.erase(0, productionPart.find_first_not_of(" \t"));
+        productionPart.erase(0, productionPart.find_first_not_of(" \t"));// remove leading spaces
 
         istringstream prodIss(productionPart);
         string production;
 
         while (getline(prodIss, production, '|')) { // if production seperated by OR '|'
-            production.erase(0, production.find_first_not_of(" \t"));// remove trailing spaces
-            production.erase(production.find_last_not_of(" \t") + 1);
+            production.erase(0, production.find_first_not_of(" \t"));// remove leading spaces
+            production.erase(production.find_last_not_of(" \t") + 1);// remove trailing spaces
 
             if (production.empty()) continue;
 

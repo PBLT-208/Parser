@@ -86,7 +86,7 @@ void FirstFollow::computeFollow(const string& startSymbol) {
 
                     size_t before = follow[B].size();// calculate size to track change
 
-                    if (i + 1 < rule.size()) { // to prevent out of bounds
+                    if (i + 1 < rule.size()) {
                         // see the next symbol of non-terminal
                         vector<string> beta(rule.begin() + i + 1, rule.end()); 
                         set<string> firstBeta = computeFirstOfString(beta);// find first of that symbol
@@ -101,7 +101,7 @@ void FirstFollow::computeFollow(const string& startSymbol) {
                             follow[B].insert(follow[lhs].begin(), follow[lhs].end());
                         }
                     } else {
-                        // if only one RHS symbol, then follow will be equal to follow of LHS
+                        // if last RHS symbol, then follow will be equal to follow of LHS
                         follow[B].insert(follow[lhs].begin(), follow[lhs].end());
                     }
 

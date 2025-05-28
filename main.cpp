@@ -69,7 +69,7 @@ int main() {
         cout << mp.first.first << " " << mp.first.second << " " << mp.second << endl;
     }
 
-    // Step 4: Generate CLR Parsing Table
+    // Step 4: Generate CLR1 Parsing Table
     ParsingTable parse_table(augment_prod, item_sets, transitions, follow, start);
     parse_table.generateParseTable();
 

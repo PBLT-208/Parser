@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grammar Parser UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    pre {
+      background: #f0f0f0;
+      padding: 10px;
+      white-space: pre-wrap;
+      border-left: 5px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h2>Grammar Parser Interface</h2>
+
+  <label for="grammar">Enter Grammar:</label>
+  <textarea id="grammar" rows="6" placeholder="Example:&#10;E -> E + T | T&#10;T -> T * F | F&#10;F -> ( E ) | id"></textarea>
+
+  <label for="inputString">Enter Input String:</label>
+  <input type="text" id="inputString" placeholder="id + id * id">
+
+  <button onclick="submitData()">Submit</button>
+
+  <h3>Output:</h3>
+  <pre id="output">Output will appear here...</pre>
+
+  <script>
+    async function submitData() {
+      const grammar = document.getElementById("grammar").value;
+      const input = document.getElementById("inputString").value;
+
+      const response = await fetch('/run-parser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ grammar, input })
+      });
+
+      const result = await response.text();
+      document.getElementById("output").textContent = result;
+    }
+  </script>
+</body>
+</html>

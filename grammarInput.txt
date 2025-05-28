@@ -1,6 +1,2 @@
-E -> E + T
-E -> T
-T -> T F
-T -> F *
-F -> a
-F -> b
+E -> E + T | T
+T -> a
